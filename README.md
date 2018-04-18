@@ -1,6 +1,6 @@
 # moltin-short-order-id
 
-> 📦 Generate a shorter order ID
+> 🔢 Generate a short order ID
 
 [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/moltin-examples/moltin-short-order-id&env=MOLTIN_CLIENT_ID&env=MOLTIN_SECRET_KEY)
 
