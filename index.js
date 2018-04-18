@@ -9,7 +9,7 @@ const moltin = motlinGateway({
   client_secret: process.env.MOLTIN_CLIENT_SECRET
 })
 
-const moltinSecret = process.env.MOLTIN_WEBHOOK_SECRET
+// const moltinSecret = process.env.MOLTIN_WEBHOOK_SECRET
 
 module.exports = cors(
   router(
@@ -23,21 +23,13 @@ module.exports = cors(
       // We need to parse resources to get around a bug
       const { data: { id } } = JSON.parse(payload.resources)
 
-      console.log(id)
-
       try {
-        const short_id = cuid.slug()
-
-        console.log(short_id)
-
+        const short_id = cuid.slug().toUpperCase()
         const order = await moltin.Orders.Update(id, { id, short_id })
 
-        console.log(order)
-
         send(res, 200)
-      } catch (error) {
-        console.log(error)
-        send(res, status, 'Something went wrong')
+      } catch ({ status, json }) {
+        send(res, status, json)
       }
     })
   )
